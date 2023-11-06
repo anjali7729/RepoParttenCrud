@@ -1,0 +1,12 @@
+.card-container {
+    display: flex;
+    gap: 20px; 
+  }
+  
+  .card {
+    flex: 1;
+    /* max-width: 18rem;  */
+    height: 370px;
+  }
+  
+  

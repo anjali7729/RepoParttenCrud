@@ -1,0 +1,16 @@
+<div class="card-container">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-2" *ngFor="let p of product">
+      <div class="card border-1 rounded-2 shadow">
+        <div class="card-body ">
+          <img class="card-img-top" [src]="p.profile ? (image + p.profile) : '/assets/b.jpg'" alt="Card image cap" height="170" width="70">
+          <h5 class="card-title">{{p.name}}</h5>
+          <p class="card-text">{{p.description}}</p>
+          <hr class="mt-0 mb-2" />
+          <p class="card-text"><b>Price: {{p.price}} Rs.</b></p>
+          <a routerLink="/product-details/{{p.id}}" class="btn btn-primary">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<form [formGroup]="ValidForm" (ngSubmit)="addCategory()">
+<div class="row">
+  <div class="col-md-4">
+    <div class="mb-3">
+      <label for="name" class="form-label">Product Name</label>
+      <input type="text" class="form-control" id="name"  name="name" [(ngModel)]="addCateReq.name" formControlName="name">
+      <div class="form-text text-danger" *ngIf="Name.errors?.['required'] && (Name.touched || Name.dirty)">
+        Name is Required.
+      </div>
+      <div class="form-text text-danger" *ngIf="Name.errors?.['minlength'] && (Name.touched || Name.dirty)">
+        Name is atleast more than 2 Character.
+      </div>
+      <div class="form-text text-danger" *ngIf="Name.errors?.['maxlength'] && (Name.touched || Name.dirty)">
+        Name is too Long.
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="mb-3">
+      <label class="form-label" for="description">Brand Name</label>
+      <input type="text" class="form-control" id="brand"  name="brand" [(ngModel)]="addCateReq.brand" formControlName="brand">
+      <div class="form-text text-danger" *ngIf="Brand.errors?.['required'] && (Brand.touched || Brand.dirty)">
+        Brand is Required.
+      </div>
+      <div class="form-text text-danger" *ngIf="Brand.errors?.['minlength'] && (Brand.touched || Brand.dirty)">
+        Brand is atleast more than 2 Character.
+      </div>
+      <div class="form-text text-danger" *ngIf="Brand.errors?.['maxlength'] && (Brand.touched || Brand.dirty)">
+        Brand is too Long.
+      </div>
+  </div>
+  </div>
+  <div class="col-md-4">
+    <div class="mt-4">
+      <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+  </div>
+</div>
+</form>
+
+<div class="card m-1 p-2 shadow rounded-2 ">
+  <div class="text-center">
+      <h3><u>Category List</u></h3>
+  </div>
+  <table class="table mt-2">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Brand</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of category let i=index">
+          <td>{{i+1}}</td>
+          <td>{{c.name}}</td>
+          <td>{{c.brand}}</td>        
+          <td>
+           <a class="btn btn-warning me-2" [routerLink]="['/edit-category',c.id]" >Edit</a>
+         </td>
+          <td>
+              <button type="button" class="btn btn-danger" (click)="onDelete(c.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

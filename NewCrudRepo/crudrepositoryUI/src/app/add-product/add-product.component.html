@@ -1,0 +1,77 @@
+<div class="container my-5">
+  <h1 class="mb-3">Add New Product</h1>
+  <div class="row">
+      <div class="col-6">
+          <form [formGroup]="ValidForm" (ngSubmit)="addProduct()">
+              <div class="mb-3">
+                <label for="name" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="name"  name="name" [(ngModel)]="addProductRequest.name" formControlName="name">
+                <div class="form-text text-danger" *ngIf="Name.errors?.['required'] && (Name.touched || Name.dirty)">
+                  Name is Required.
+                </div>
+                <div class="form-text text-danger" *ngIf="Name.errors?.['minlength'] && (Name.touched || Name.dirty)">
+                  Name is atleast more than 2 Character.
+                </div>
+                <div class="form-text text-danger" *ngIf="Name.errors?.['maxlength'] && (Name.touched || Name.dirty)">
+                  Name is too Long.
+                </div>
+                <div class="form-text text-danger" *ngIf="Name.errors?.['pattern'] && (Name.touched || Name.dirty)">
+                  Name not contain number and Special Character.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                  <label class="form-label" for="description">Description</label>
+                  <textarea class="form-control" id="description" formControlName="description" name="description" [(ngModel)]="addProductRequest.description" rows="4"></textarea>
+                  <div class="form-text text-danger" *ngIf="Description.errors?.['required'] && (Description.touched || Description.dirty)">
+                    Description is Required.
+                  </div>
+                  <div class="form-text text-danger" *ngIf="Description.errors?.['minlength'] && (Description.touched || Description.dirty)">
+                    Description is atleast more than 2 Character.
+                  </div>
+                  <div class="form-text text-danger" *ngIf="Description.errors?.['maxlength'] && (Description.touched || Description.dirty)">
+                    Description is too Long.
+                  </div>
+              </div>
+
+                <div class="mb-3">
+                  <label for="price" class="form-label">Price</label>
+                  <input type="text" class="form-control" id="price"  name="price" formControlName="price" [(ngModel)]="addProductRequest.price">
+                  <div class="form-text text-danger" *ngIf="Price.errors?.['required'] && (Price.touched || Price.dirty)">
+                    Price is Required.
+                  </div>
+                  <div class="form-text text-danger" *ngIf="Price.errors?.['pattern'] && (Price.touched || Price.dirty)">
+                    Price not contain alphabets and Special Character.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="salary" class="form-label">File Uopload</label>
+                  <input type="file" (change)="handleUpload($event)" class="form-control" required name="profile" formControlName="profile"/>
+                </div>
+
+                <div class="mb-3">
+                  <label for="cateName" class="form-label">Category Name</label>
+                  <select class="form-control" id="cateName" [(ngModel)]="addProductRequest.cateName" name="cateName" formControlName="cateName">
+                    <option *ngFor="let c of category" [value]="c.id">{{c.name}}</option>
+                  </select>
+                  <div class="form-text text-danger" *ngIf="CateName.errors?.['required'] && (CateName.touched || CateName.dirty)">
+                    CateName is Required.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="brandName" class="form-label">Brand Name</label>
+                  <select class="form-control" id="brandName" [(ngModel)]="addProductRequest.brandName" name="brandName" formControlName="brandName">
+                    <option *ngFor="let c of category" [value]="c.id">{{c.brand}}</option>
+                  </select>
+                  <div class="form-text text-danger" *ngIf="BrandName.errors?.['required'] && (BrandName.touched || BrandName.dirty)">
+                    BrandName is Required.
+                  </div>
+                 </div>
+              <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+      </div>
+  </div>
+</div>
+

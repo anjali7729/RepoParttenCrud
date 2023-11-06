@@ -1,0 +1,22 @@
+<div class="card rounded-1 shadow w-75">
+  <div class="row g-0">
+    <div class="col-md-4 text-center">
+      <img [src]="ProductDetails.profile ? (image + ProductDetails.profile) : '/assets/b.jpg'" alt="Product Image" class="img-fluid" height="170" width="70">
+      <!-- <img *ngIf="!mainPhotoUrl" src="/assets/b.jpg" alt="Product Image" class="img-fluid"> -->
+
+
+      <div class="card-body m-1">
+        <a class="btn btn-warning me-2" [routerLink]="['/edit-product',ProductDetails.id]" >Update</a>
+        <!-- <button class="btn btn-warning me-2" routerLink="/edit-product/{{ProductDetails.id}}">Update</button> -->
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">Product Name : {{ProductDetails.name}}</h5>
+        <p class="card-text">Product Description : {{ProductDetails.description}}</p>
+        <p class="card-text"><b>Price : {{ProductDetails.price}} </b></p>
+      </div>
+    </div>
+  </div>
+</div>
